@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Tunisia Mall</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .admin-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .config-card {
+            background: rgba(255,165,0,0.1);
+            border: 1px solid #ffa500;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        input, textarea, select {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .btn-submit {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { background: #218838; }
+        .product-item-admin {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .product-item-admin img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h2>لوحة إدارة المتجر - Admin Panel</h2>
+            <a href="index.html" style="color:white; text-decoration:none;"> العودة للمتجر 🛒</a>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Supabase Setup Instructions -->
+        <div class="config-card">
+            <h3>إعدادات الربط بقاعدة البيانات (Supabase)</h3>
+            <p style="font-size: 0.9rem;">أدخل إعدادات Supabase الخاصة بك للتحكم المباشر بالمنتجات.</p>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Supabase URL:</label>
+                    <input type="text" id="cfg-url" placeholder="https://xyz.supabase.co">
+                </div>
+                <div class="form-group">
+                    <label>Supabase Anon Key:</label>
+                    <input type="text" id="cfg-key" placeholder="eyJhbGciOiJIUzI1NiI...">
+                </div>
+            </div>
+            <button class="btn-submit" style="background:#007bff;" onclick="saveConfig()">حفظ إعدادات الاتصال</button>
+        </div>
+
+        <!-- Add Product Form -->
+        <h3>إضافة منتج جديد</h3>
+        <form id="add-product-form" onsubmit="handleProductAdd(event)">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>اسم المنتج (بالعربية):</label>
+                    <input type="text" id="p-name-ar" required placeholder="مثال: عطر فاخر">
+                </div>
+                <div class="form-group">
+                    <label>اسم المنتج (بالفرنسية):</label>
+                    <input type="text" id="p-name-fr" required placeholder="Ex: Parfum de Luxe">
+                </div>
+                <div class="form-group">
+                    <label>السعر (TND):</label>
+                    <input type="number" step="0.01" id="p-price" required placeholder="Ex: 89.00">
+                </div>
+                <div class="form-group">
+                    <label>رابط صورة المنتج (URL):</label>
+                    <input type="url" id="p-img" required placeholder="https://example.com/image.jpg">
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">➕ إضافة المنتج فوراً للمتجر</button>
+        </form>
+
+        <hr style="margin: 30px 0; border-color: var(--border-color);">
+
+        <h3>قائمة المنتجات الحالية</h3>
+        <div id="admin-products-list">تحميل المنتجات...</div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('cfg-url').value = localStorage.getItem('supabase_url') || '';
+            document.getElementById('cfg-key').value = localStorage.getItem('supabase_key') || '';
+            loadAdminProducts();
+        });
+
+        function saveConfig() {
+            const url = document.getElementById('cfg-url').value.trim();
+            const key = document.getElementById('cfg-key').value.trim();
+            localStorage.setItem('supabase_url', url);
+            localStorage.setItem('supabase_key', key);
+            alert('تم حفظ إعدادات Supabase بنجاح!');
+            location.reload();
+        }
+
+        async function handleProductAdd(e) {
+            e.preventDefault();
+            const name_ar = document.getElementById('p-name-ar').value;
+            const name_fr = document.getElementById('p-name-fr').value;
+            const price = parseFloat(document.getElementById('p-price').value);
+            const image_url = document.getElementById('p-img').value;
+
+            const client = getSupabaseClient();
+            if(!client) {
+                alert('يرجى إدخال إعدادات Supabase وتأكيد الحفظ أولاً.');
+                return;
+            }
+
+            const { data, error } = await client.from('products').insert([
+                { name_ar, name_fr, price, image_url }
+            ]);
+
+            if(error) {
+                alert('حدث خطأ أثناء الإضافة: ' + error.message);
+            } else {
+                alert('تم إضافة المنتج بنجاح إلى المتجر!');
+                document.getElementById('add-product-form').reset();
+                loadAdminProducts();
+            }
+        }
+
+        async function loadAdminProducts() {
+            const container = document.getElementById('admin-products-list');
+            const client = getSupabaseClient();
+            
+            if(!client) {
+                container.innerHTML = '<p style="color:orange;">يرجى ضبط إعدادات Supabase في الأعلى لعرض المنتجات من قاعدة البيانات.</p>';
+                return;
+            }
+
+            const { data: products, error } = await client.from('products').select('*');
+
+            if(error) {
+                container.innerHTML = '<p style="color:red;">خطأ في جلب البيانات: ' + error.message + '</p>';
+                return;
+            }
+
+            if(!products || products.length === 0) {
+                container.innerHTML = '<p>لا توجد منتجات حالياً في قاعدة البيانات.</p>';
+                return;
+            }
+
+            container.innerHTML = products.map(p => `
+                <div class="product-item-admin">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${p.image_url}" alt="${p.name_fr}">
+                        <div>
+                            <strong>${p.name_fr} / ${p.name_ar}</strong>
+                            <br><small>${p.price} TND</small>
+                        </div>
+                    </div>
+                    <button class="btn-delete" onclick="deleteProduct('${p.id}')">حذف 🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        async function deleteProduct(id) {
+            if(!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+            const client = getSupabaseClient();
+            const { error } = await client.from('products').delete().eq('id', id);
+            if(error) alert('خطأ أثناء الحذف: ' + error.message);
+            else {
+                alert('تم حذف المنتج!');
+                loadAdminProducts();
+            }
+        }
+    </script>
+</body>
+</html>
