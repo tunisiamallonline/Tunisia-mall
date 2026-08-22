@@ -1,18 +1,127 @@
-const WHATSAPP_NUMBER="21696416123";
-const translations={
-fr:{home:"Accueil",categories:"Catégories",products:"Produits",about:"À propos",contact:"Contact",eyebrow:"BIENVENUE CHEZ TUNISIA MALL",heroTitle:'Votre shopping tunisien, <span>simple, rapide et moderne.</span>',heroText:"Découvrez nos produits, ajoutez-les au panier et envoyez votre commande en quelques clics.",shopNow:"Découvrir les produits",explore:"Explorer les catégories",cod:"Paiement à la livraison",support:"Commande WhatsApp",tunisia:"Livraison en Tunisie",heroBadge:"Votre boutique en ligne tunisienne",discover:"DÉCOUVRIR",catTitle:"Nos catégories",catNote:"Trouvez rapidement ce qui vous intéresse.",electronics:"Électronique",electronicSub:"Accessoires & appareils",games:"Jeux & loisirs",gamesSub:"Pour petits et grands",homeCat:"Maison",homeSub:"Pratique et utile",fashion:"Mode",fashionSub:"Style au quotidien",selection:"SÉLECTION",featured:"Nos produits",all:"Toutes les catégories",why:"POURQUOI NOUS",aboutTitle:"Une boutique pensée pour la Tunisie.",aboutLead:"Une expérience simple : choisir, commander et payer à la livraison.",easy:"Commande facile",easyText:"Ajoutez vos articles au panier puis envoyez la commande.",safe:"Paiement à la livraison",safeText:"Pas besoin de paiement en ligne pour commander.",help:"Assistance rapide",helpText:"Une question ? Contactez-nous directement sur WhatsApp.",contactEyebrow:"BESOIN D'AIDE ?",contactTitle:"Nous sommes à votre écoute.",contactText:"Pour commander ou demander une information, contactez-nous sur WhatsApp.",footer:"Boutique en ligne tunisienne",cart:"Votre panier",total:"Total",order:"Commander sur WhatsApp",codNote:"Paiement à la livraison. Les frais de livraison peuvent varier selon la zone."},
-ar:{home:"الرئيسية",categories:"الأقسام",products:"المنتجات",about:"من نحن",contact:"اتصل بنا",eyebrow:"مرحبا بكم في TUNISIA MALL",heroTitle:'تسوّق في تونس، <span>بسهولة وسرعة وعصرية.</span>',heroText:"اكتشف منتجاتنا وأضفها إلى السلة وأرسل طلبك في بضع نقرات.",shopNow:"اكتشف المنتجات",explore:"استكشف الأقسام",cod:"الدفع عند الاستلام",support:"الطلب عبر واتساب",tunisia:"التوصيل في تونس",heroBadge:"متجرك الإلكتروني التونسي",discover:"اكتشف",catTitle:"أقسامنا",catNote:"اعثر بسرعة على ما تبحث عنه.",electronics:"الإلكترونيات",electronicSub:"إكسسوارات وأجهزة",games:"الألعاب والترفيه",gamesSub:"للصغار والكبار",homeCat:"المنزل",homeSub:"منتجات عملية ومفيدة",fashion:"الموضة",fashionSub:"أناقة يومية",selection:"اختياراتنا",featured:"منتجاتنا",all:"كل الأقسام",why:"لماذا نحن",aboutTitle:"متجر مصمم للزبون التونسي.",aboutLead:"تجربة بسيطة: اختر، اطلب، وادفع عند الاستلام.",easy:"طلب سهل",easyText:"أضف المنتجات إلى السلة ثم أرسل الطلب.",safe:"الدفع عند الاستلام",safeText:"لا تحتاج إلى الدفع الإلكتروني لإتمام الطلب.",help:"مساعدة سريعة",helpText:"لديك سؤال؟ تواصل معنا مباشرة عبر واتساب.",contactEyebrow:"هل تحتاج للمساعدة؟",contactTitle:"نحن هنا لمساعدتك.",contactText:"للطلب أو الاستفسار، تواصل معنا عبر واتساب.",footer:"متجر إلكتروني تونسي",cart:"سلة المشتريات",total:"المجموع",order:"اطلب عبر واتساب",codNote:"الدفع عند الاستلام. قد تختلف مصاريف التوصيل حسب المنطقة."}
-};
-let lang=localStorage.getItem("tm_lang")||"fr";
-let cart=JSON.parse(localStorage.getItem("tm_cart")||"[]");
-const $=s=>document.querySelector(s);const money=n=>`${Number(n).toFixed(0)} DT`;
-function renderProducts(){const q=$("#search").value.trim().toLowerCase(),cat=$("#categoryFilter").value;const list=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&p.name.toLowerCase().includes(q));$("#resultCount").textContent=lang==="ar"?`${list.length} منتج`: `${list.length} produit${list.length>1?'s':''}`;$("#productGrid").innerHTML=list.map(p=>`<article class="product"><div class="product-img"><img loading="lazy" src="${p.image}" alt="${p.name}"></div><div class="product-body"><div class="product-cat">${p.category}</div><h3>${p.name}</h3><div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart(${p.id})">+ ${lang==="ar"?"إضافة":"Ajouter"}</button></div></div></article>`).join("")||`<div class="empty">${lang==="ar"?"لم يتم العثور على منتجات.":"Aucun produit trouvé."}</div>`}
-function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});saveCart();openCart();toast(lang==="ar"?"تمت إضافة المنتج إلى السلة":"Produit ajouté au panier")}
-function saveCart(){localStorage.setItem("tm_cart",JSON.stringify(cart));renderCart()}
-function renderCart(){const box=$("#cartItems");$("#cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);if(!cart.length){box.innerHTML=`<div class="empty">${lang==="ar"?"السلة فارغة":"Votre panier est vide."}</div>`;$("#cartTotal").textContent="0 DT";return}let total=0;box.innerHTML=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);if(!p)return"";total+=p.price*i.qty;return `<div class="cart-line"><div><b>${p.name}</b><small>${money(p.price)} × ${i.qty}</small></div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div>`}).join("");$("#cartTotal").textContent=money(total)}
-function changeQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart()}
-function openCart(){$("#cartDrawer").classList.add("open");$("#cartDrawer").setAttribute("aria-hidden","false")};function closeCart(){$("#cartDrawer").classList.remove("open");$("#cartDrawer").setAttribute("aria-hidden","true")}
-function applyLang(){document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=translations[lang][el.dataset.i18n];if(v!==undefined)el.innerHTML=v});$("#langBtn").textContent=lang==="ar"?"FR":"ع";$("#search").placeholder=lang==="ar"?"ابحث عن منتج…":"Rechercher un produit…";renderProducts();renderCart()}
-function orderWhatsApp(){if(!cart.length){alert(lang==="ar"?"أضف منتجاً إلى السلة أولاً.":"Ajoutez d'abord un produit.");return}let msg=lang==="ar"?"مرحبا، أريد طلب:\n":"Bonjour, je souhaite commander:\n";let total=0;cart.forEach(i=>{const p=PRODUCTS.find(x=>x.id===i.id);if(!p)return;total+=p.price*i.qty;msg+=`- ${p.name} × ${i.qty} = ${money(p.price)}\n`});msg+=`\n${lang==="ar"?"المجموع":"Total"}: ${money(total)}\n${lang==="ar"?"الدفع: عند الاستلام":"Paiement: à la livraison"}`;window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank")}
-function toast(text){const el=$("#toast");el.textContent=text;el.classList.add("show");clearTimeout(window.tmToast);window.tmToast=setTimeout(()=>el.classList.remove("show"),1800)}
-$("#search").addEventListener("input",renderProducts);$("#categoryFilter").addEventListener("change",renderProducts);$("#cartBtn").onclick=openCart;$("#closeCart").onclick=closeCart;$("#orderBtn").onclick=orderWhatsApp;$("#cartDrawer").addEventListener("click",e=>{if(e.target.id==="cartDrawer")closeCart()});$("#langBtn").onclick=()=>{lang=lang==="fr"?"ar":"fr";localStorage.setItem("tm_lang",lang);applyLang()};$("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("tm_dark",document.body.classList.contains("dark")?"1":"0")};document.querySelectorAll(".category-card").forEach(b=>b.onclick=()=>{$("#categoryFilter").value=b.dataset.category;renderProducts();$("#products").scrollIntoView({behavior:"smooth"})});$("#whatsappLink").href=`https://wa.me/${WHATSAPP_NUMBER}`;if(localStorage.getItem("tm_dark")==="1")document.body.classList.add("dark");$("#year").textContent=new Date().getFullYear();applyLang();
+let cart = JSON.parse(localStorage.getItem("tm_cart") || "[]");
+let filteredProducts = [...PRODUCTS];
+
+const $ = (id) => document.getElementById(id);
+const money = (n) => Number(n).toFixed(3) + " DT";
+
+function saveCart(){ localStorage.setItem("tm_cart", JSON.stringify(cart)); }
+
+function renderProducts(){
+  const grid = $("productsGrid");
+  const empty = $("emptyState");
+  if(!grid) return;
+  grid.innerHTML = "";
+  if(!filteredProducts.length){ empty.hidden = false; return; }
+  empty.hidden = true;
+
+  filteredProducts.forEach(p=>{
+    const card = document.createElement("article");
+    card.className = "product-card";
+    const image = p.image
+      ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`
+      : "";
+    card.innerHTML = `
+      <div class="product-image">
+        ${image}
+        <span class="product-placeholder" style="${p.image ? "display:none":""}">${p.icon || "🛍️"}</span>
+        ${p.badge ? `<span class="badge">${escapeHtml(p.badge)}</span>` : ""}
+      </div>
+      <div class="product-info">
+        <span class="product-cat">${escapeHtml(p.category)}</span>
+        <div class="product-name">${escapeHtml(p.name)}</div>
+        <div class="product-bottom">
+          <span class="price">${money(p.price)}</span>
+          <button class="add-btn" onclick="addToCart(${p.id})">أضف للسلة</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+  const found = cart.find(x=>x.id===id);
+  if(found) found.qty++; else cart.push({id:p.id,qty:1});
+  saveCart(); renderCart(); openCart();
+}
+
+function changeQty(id,delta){
+  const item=cart.find(x=>x.id===id); if(!item)return;
+  item.qty += delta;
+  if(item.qty<=0) cart=cart.filter(x=>x.id!==id);
+  saveCart(); renderCart();
+}
+
+function renderCart(){
+  $("cartCount").textContent = cart.reduce((s,x)=>s+x.qty,0);
+  const box=$("cartItems"); box.innerHTML="";
+  let total=0;
+  if(!cart.length){
+    box.innerHTML='<div class="empty-state"><div>🛒</div><h3>السلة فارغة</h3><p>أضف منتجات للبدء.</p></div>';
+  }else{
+    cart.forEach(item=>{
+      const p=PRODUCTS.find(x=>x.id===item.id); if(!p)return;
+      total += p.price*item.qty;
+      box.innerHTML += `<div class="cart-item">
+        <div class="cart-thumb">${p.icon||"🛍️"}</div>
+        <div><h4>${escapeHtml(p.name)}</h4><small>${money(p.price)}</small>
+          <div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${item.qty}</b><button onclick="changeQty(${p.id},1)">+</button></div>
+        </div>
+        <b>${money(p.price*item.qty)}</b>
+      </div>`;
+    });
+  }
+  $("cartTotal").textContent=money(total);
+}
+
+function openCart(){ $("cartPanel").classList.add("open"); $("cartPanel").setAttribute("aria-hidden","false"); $("overlay").classList.add("show"); }
+function closeCart(){ $("cartPanel").classList.remove("open"); $("cartPanel").setAttribute("aria-hidden","true"); $("overlay").classList.remove("show"); }
+
+function applyFilters(){
+  const q=$("searchInput").value.trim().toLowerCase();
+  const cat=$("categoryFilter").value;
+  const sort=$("sortFilter").value;
+  filteredProducts=PRODUCTS.filter(p=>
+    (cat==="all"||p.category===cat) &&
+    (!q || (p.name+" "+p.category).toLowerCase().includes(q))
+  );
+  if(sort==="low") filteredProducts.sort((a,b)=>a.price-b.price);
+  if(sort==="high") filteredProducts.sort((a,b)=>b.price-a.price);
+  renderProducts();
+}
+
+$("searchForm").addEventListener("submit",e=>{e.preventDefault();applyFilters();document.querySelector("#products").scrollIntoView({behavior:"smooth"});});
+$("searchInput").addEventListener("input",applyFilters);
+$("categoryFilter").addEventListener("change",applyFilters);
+$("sortFilter").addEventListener("change",applyFilters);
+$("cartBtn").addEventListener("click",openCart);
+$("closeCart").addEventListener("click",closeCart);
+$("overlay").addEventListener("click",closeCart);
+$("menuBtn").addEventListener("click",()=>$("nav").classList.toggle("open"));
+
+document.querySelectorAll(".category-card").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    $("categoryFilter").value=btn.dataset.category;
+    applyFilters();
+    document.querySelector("#products").scrollIntoView({behavior:"smooth"});
+  });
+});
+
+$("whatsappOrder").addEventListener("click",()=>{
+  if(!cart.length){alert("السلة فارغة.");return;}
+  let msg="مرحباً Tunisia Mall، أريد تأكيد هذا الطلب:%0A%0A";
+  let total=0;
+  cart.forEach(item=>{
+    const p=PRODUCTS.find(x=>x.id===item.id);
+    if(p){ total+=p.price*item.qty; msg+=`- ${encodeURIComponent(p.name)} × ${item.qty} = ${encodeURIComponent(money(p.price*item.qty))}%0A`; }
+  });
+  msg += `%0Aالمجموع: ${encodeURIComponent(money(total))}%0Aالدفع: عند الاستلام`;
+  window.open("https://wa.me/21696416123?text="+msg,"_blank");
+});
+
+renderProducts();
+renderCart();

@@ -1,21 +1,34 @@
-# Tunisia Mall
+# Tunisia Mall — نسخة V2
 
-Boutique en ligne tunisienne moderne, bilingue français/arabe.
+هذه نسخة مستقلة ونظيفة للموقع، مستوحاة من أسلوب متاجر التجارة الإلكترونية التونسية الحديثة مثل SpaceNet من حيث:
+- شريط علوي للخدمات
+- بحث وفئات
+- بطاقات منتجات
+- عروض
+- سلة مشتريات
+- طلب عبر WhatsApp
+- تصميم متجاوب للهاتف والكمبيوتر
 
-## Fonctionnalités
-- Design responsive mobile/ordinateur
-- Mode sombre (Dark Mode) mémorisé
-- Français / العربية
-- Recherche et filtrage des produits
-- Panier avec sauvegarde locale
-- Commande via WhatsApp
-- Paiement à la livraison
-- Produits faciles à modifier dans `products.js`
+ليست نسخة من كود أو تصميم SpaceNet، بل تصميم أصلي لـ Tunisia Mall.
 
-## Avant la mise en ligne
-1. Le logo officiel est `logo.png` et est utilisé dans la carte principale de la page d’accueil.
-2. Le numéro WhatsApp du magasin est déjà configuré dans `script.js` : `21696416123`.
-3. Ouvrir `products.js` pour remplacer les produits de démonstration.
-4. Connecter le dépôt GitHub à Cloudflare Pages/Workers Static Assets.
+## الملفات
+- index.html
+- style.css
+- products.js
+- script.js
+- logo.png (ضع شعارك الحالي بجانب index.html)
 
-Ne pas mettre de mots de passe ou de clés secrètes dans les fichiers publics.
+## رفع الملفات
+ارفع الملفات الأربعة إلى جذر مستودع GitHub.
+ثم ضع logo.png في نفس المكان بجانب index.html.
+
+## إضافة الصور
+أنشئ مجلداً اسمه images، ثم في products.js:
+image:"images/nom-image.jpg"
+
+## WhatsApp
+الرقم المبرمج للطلبات:
+21696416123
+
+## ملاحظة
+المنتجات الموجودة في products.js تجريبية فقط، ويمكن حذفها واستبدالها بمنتجاتك وأسعارك الحقيقية.
