@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tunisia Mall - متجر إلكتروني تونسي عصري">
+  <title>Tunisia Mall | المتجر الإلكتروني</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar">🚚 توصيل سريع داخل تونس • 💳 الدفع عند الاستلام • ⭐ عروض جديدة كل أسبوع</div>
+  <header class="header">
+    <a class="brand" href="#"><span class="brand-mark">TM</span><span><b>Tunisia</b> Mall<small>Shopping made easy</small></span></a>
+    <div class="search-wrap"><input id="search" type="search" placeholder="إبحث عن منتج..." aria-label="البحث"><button id="searchBtn">بحث</button></div>
+    <button class="cart-btn" id="cartOpen">🛒 السلة <span id="cartCount">0</span></button>
+  </header>
+  <nav class="nav">
+    <button class="nav-link active" data-cat="all">الرئيسية</button>
+    <button class="nav-link" data-cat="electronics">إلكترونيات</button>
+    <button class="nav-link" data-cat="home">المنزل</button>
+    <button class="nav-link" data-cat="fashion">أزياء</button>
+    <button class="nav-link" data-cat="beauty">عناية</button>
+    <button class="nav-link" data-cat="offers">العروض</button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">🇹🇳 التسوق التونسي أسهل</span>
+        <h1>كل ما تحتاجه،<br><span>في مكان واحد.</span></h1>
+        <p>اكتشف منتجات مختارة، أسعار واضحة وتجربة شراء بسيطة من الهاتف.</p>
+        <button class="primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">إكتشف المنتجات ↓</button>
+      </div>
+      <div class="hero-card">
+        <div class="hero-circle">TM</div>
+        <b>عرض الأسبوع</b>
+        <strong>خصم يصل إلى 30%</strong>
+        <small>على منتجات مختارة</small>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div>🔒 <b>دفع آمن</b><small>بياناتك محمية</small></div>
+      <div>🚚 <b>توصيل سريع</b><small>إلى مختلف الولايات</small></div>
+      <div>📞 <b>خدمة حريف</b><small>مساعدة عند الحاجة</small></div>
+      <div>↩️ <b>استبدال سهل</b><small>حسب الشروط</small></div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-head"><div><span class="eyebrow">اختياراتنا</span><h2>منتجات مميزة</h2></div><span id="resultCount"></span></div>
+      <div class="chips">
+        <button class="chip active" data-cat="all">الكل</button>
+        <button class="chip" data-cat="electronics">إلكترونيات</button>
+        <button class="chip" data-cat="home">المنزل</button>
+        <button class="chip" data-cat="fashion">أزياء</button>
+        <button class="chip" data-cat="beauty">عناية</button>
+        <button class="chip" data-cat="offers">العروض</button>
+      </div>
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <section class="newsletter">
+      <div><span class="eyebrow">لا تفوّت الجديد</span><h2>اشترك في النشرة</h2><p>أخبار العروض والمنتجات الجديدة مباشرة إلى بريدك.</p></div>
+      <form id="newsletter"><input type="email" placeholder="البريد الإلكتروني" required><button class="primary">اشتراك</button></form>
+    </section>
+  </main>
+
+  <footer><div><a class="brand" href="#"><span class="brand-mark">TM</span><span><b>Tunisia</b> Mall<small>Shopping made easy</small></span></a><p>متجر إلكتروني تونسي بتجربة بسيطة وسريعة.</p></div><div><b>روابط</b><a href="#products">المنتجات</a><a href="#">من نحن</a><a href="#">اتصل بنا</a></div><div><b>الدعم</b><span>الدفع عند الاستلام</span><span>التوصيل داخل تونس</span><span>خدمة الحرفاء</span></div></footer>
+  <div class="copyright">© 2026 Tunisia Mall — جميع الحقوق محفوظة</div>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart" id="cart">
+    <div class="cart-head"><h2>سلة المشتريات</h2><button id="cartClose">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-foot"><div><span>المجموع</span><strong id="cartTotal">0 د.ت</strong></div><button class="primary full" id="checkout">إتمام الطلب</button><small>سيتم حفظ السلة على جهازك.</small></div>
+  </aside>
+
+  <div class="modal" id="checkoutModal">
+    <div class="modal-box"><button class="modal-close" id="modalClose">×</button><span class="eyebrow">إتمام الطلب</span><h2>بيانات التوصيل</h2>
+      <form id="orderForm"><input name="name" placeholder="الاسم واللقب" required><input name="phone" type="tel" placeholder="رقم الهاتف" required><select name="state" required><option value="">اختر الولاية</option><option>تونس</option><option>أريانة</option><option>بن عروس</option><option>منوبة</option><option>نابل</option><option>سوسة</option><option>المنستير</option><option>صفاقس</option><option>بنزرت</option><option>قابس</option><option>مدنين</option><option>قفصة</option><option>القيروان</option><option>زغوان</option><option>باجة</option><option>جندوبة</option><option>الكاف</option><option>سليانة</option><option>المهدية</option><option>تطاوين</option><option>قبلي</option><option>توزر</option><option>سيدي بوزيد</option></select><textarea name="address" placeholder="العنوان بالتفصيل" required></textarea><button class="primary full">تأكيد الطلب</button></form>
+      <p class="note">ملاحظة: هذه النسخة واجهة متجر جاهزة للنشر. ربط الطلبات الفعلية بقاعدة بيانات/واتساب يمكن إضافته لاحقاً.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
