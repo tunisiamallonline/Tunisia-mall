@@ -1,114 +1,357 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Tunisia Mall — boutique en ligne tunisienne. Commande simple et paiement à la livraison.">
-  <title>Tunisia Mall | Boutique en ligne</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunisia Mall - Votre shopping tunisien, simple, rapide et moderne</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #09152b 0%, #0d2347 50%, #071020 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --primary-blue: #0088cc;
+            --btn-hover: #006699;
+            --text-light: #ffffff;
+            --text-sub: #b0c4de;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Navigation Bar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(9, 21, 43, 0.85);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .header-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .header-logo span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--primary-blue);
+        }
+
+        .cart-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 20px 20px 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .badge-welcome {
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-sub);
+            margin-bottom: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-blue);
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Buttons Group */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* Trust Badges */
+        .trust-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .trust-item {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trust-item span {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* Featured Brand Banner / Logo Card Section */
+        .brand-banner-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px auto 40px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-wrapper {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 15px auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .brand-text {
+            color: var(--text-sub);
+            font-size: 0.88rem;
+            margin-top: 10px;
+        }
+
+        /* Products Grid Placeholder */
+        .products-section {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+        }
+
+        .product-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: var(--primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--card-border);
+        }
+    </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#"><span class="brand-mark">TM</span><span>Tunisia <b>Mall</b></span></a>
-    <nav class="nav-links">
-      <a href="#home" data-i18n="home">Accueil</a>
-      <a href="#categories" data-i18n="categories">Catégories</a>
-      <a href="#products" data-i18n="products">Produits</a>
-      <a href="#about" data-i18n="about">À propos</a>
-      <a href="#contact" data-i18n="contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button id="langBtn" class="icon-btn" aria-label="Changer la langue">ع</button>
-      <button id="themeBtn" class="icon-btn" aria-label="Mode sombre">☾</button>
-      <button id="cartBtn" class="cart-btn">🛒 <span id="cartCount">0</span></button>
-    </div>
-  </div>
-</header>
 
-<main>
-<section id="home" class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow" data-i18n="eyebrow">BIENVENUE CHEZ TUNISIA MALL</span>
-      <h1 data-i18n="heroTitle">Votre shopping tunisien, <span>simple et rapide.</span></h1>
-      <p data-i18n="heroText">Découvrez nos produits, commandez en quelques clics et payez à la livraison.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#products" data-i18n="shopNow">Découvrir les produits</a>
-        <a class="btn secondary" href="#categories" data-i18n="explore">Explorer les catégories</a>
-      </div>
-      <div class="trust-row">
-        <span>✓ <b data-i18n="cod">Paiement à la livraison</b></span>
-        <span>✓ <b data-i18n="support">Support WhatsApp</b></span>
-        <span>✓ <b data-i18n="tunisia">Livraison en Tunisie</b></span>
-      </div>
-    </div>
-    <div class="hero-card">
-      <div class="hero-glow"></div>
-      <div class="hero-badge">TN</div>
-      <h3>Tunisia Mall</h3>
-      <p data-i18n="heroCard">Une expérience moderne pensée pour les clients tunisiens.</p>
-    </div>
-  </div>
-</section>
+    <!-- Header Navigation -->
+    <header>
+        <a href="#home" class="header-logo">
+            <img src="logo.png" alt="Tunisia Mall Logo">
+            <span>Tunisia Mall</span>
+        </a>
+        <div class="header-actions">
+            <button class="icon-btn" title="Langue">ع</button>
+            <button class="icon-btn" title="Mode sombre">☾</button>
+            <div class="cart-btn">
+                🛒 <span>0</span>
+            </div>
+        </div>
+    </header>
 
-<section id="categories" class="section">
-  <div class="container">
-    <div class="section-head"><div><span class="eyebrow" data-i18n="discover">DÉCOUVRIR</span><h2 data-i18n="catTitle">Nos catégories</h2></div></div>
-    <div class="category-grid">
-      <button class="category-card" data-category="Électronique"><span>💻</span><b data-i18n="electronics">Électronique</b><small data-i18n="electronicSub">Smartphones, accessoires…</small></button>
-      <button class="category-card" data-category="Jeux"><span>🎮</span><b data-i18n="games">Jeux & loisirs</b><small data-i18n="gamesSub">Pour petits et grands</small></button>
-      <button class="category-card" data-category="Maison"><span>🏠</span><b data-i18n="homeCat">Maison</b><small data-i18n="homeSub">Pratique et utile</small></button>
-      <button class="category-card" data-category="Mode"><span>👟</span><b data-i18n="fashion">Mode</b><small data-i18n="fashionSub">Style au quotidien</small></button>
-    </div>
-  </div>
-</section>
+    <!-- Main Content -->
+    <main class="hero" id="home">
+        <span class="badge-welcome">BIENVENUE CHEZ TUNISIA MALL</span>
+        <h1>Votre shopping tunisien, <span>simple</span>, rapide et moderne.</h1>
+        <p>Découvrez nos produits, ajoutez-les au panier et envoyez votre commande en quelques clics.</p>
 
-<section id="products" class="section products-section">
-  <div class="container">
-    <div class="section-head">
-      <div><span class="eyebrow" data-i18n="selection">SÉLECTION</span><h2 data-i18n="featured">Produits populaires</h2></div>
-      <div class="filters">
-        <input id="search" type="search" placeholder="Rechercher…" aria-label="Rechercher">
-        <select id="categoryFilter"><option value="all" data-i18n="all">Toutes les catégories</option><option>Électronique</option><option>Jeux</option><option>Maison</option><option>Mode</option></select>
-      </div>
-    </div>
-    <div id="productGrid" class="product-grid"></div>
-  </div>
-</section>
+        <div class="btn-group">
+            <a href="#products" class="btn-primary">Découvrir les produits</a>
+            <a href="#categories" class="btn-secondary">Explorer les catégories</a>
+        </div>
 
-<section id="about" class="section about">
-  <div class="container about-grid">
-    <div><span class="eyebrow" data-i18n="why">POURQUOI NOUS</span><h2 data-i18n="aboutTitle">Une boutique pensée pour la Tunisie.</h2></div>
-    <div class="about-points">
-      <div><b>01</b><h3 data-i18n="easy">Commande facile</h3><p data-i18n="easyText">Ajoutez vos articles au panier et envoyez votre commande.</p></div>
-      <div><b>02</b><h3 data-i18n="safe">Paiement simple</h3><p data-i18n="safeText">Paiement à la livraison, sans procédure compliquée.</p></div>
-      <div><b>03</b><h3 data-i18n="help">Assistance</h3><p data-i18n="helpText">Contact rapide pour vos questions et commandes.</p></div>
-    </div>
-  </div>
-</section>
+        <div class="trust-list">
+            <div class="trust-item"><span>✓</span> Paiement à la livraison</div>
+            <div class="trust-item"><span>✓</span> Commande WhatsApp</div>
+            <div class="trust-item"><span>✓</span> Livraison en Tunisie</div>
+        </div>
 
-<section id="contact" class="section contact">
-  <div class="container contact-box">
-    <div><span class="eyebrow" data-i18n="contactEyebrow">BESOIN D'AIDE ?</span><h2 data-i18n="contactTitle">Nous sommes à votre écoute.</h2><p data-i18n="contactText">Pour commander ou demander une information, contactez-nous sur WhatsApp.</p></div>
-    <a class="btn whatsapp" id="whatsappLink" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
-  </div>
-</section>
-</main>
+        <!-- Featured Brand Logo Card Section (Fixed Logo Display) -->
+        <div class="brand-banner-card">
+            <div class="logo-wrapper">
+                <img src="logo.png" alt="Tunisia Mall - Votre boutique en ligne tunisienne">
+            </div>
+            <p class="brand-text">Votre boutique en ligne tunisienne 100% 🇹🇳</p>
+        </div>
 
-<footer><div class="container footer"><span>© <span id="year"></span> Tunisia Mall</span><span data-i18n="footer">Boutique en ligne tunisienne</span></div></footer>
+        <!-- Products Section -->
+        <section class="products-section" id="products">
+            <h2 class="section-title">Nos Produits</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img">Produit 1</div>
+                    <div class="product-title">Nouveau Produit</div>
+                    <div class="product-price">29.900 TND</div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img">Produit 2</div>
+                    <div class="product-title">Produit Populaire</div>
+                    <div class="product-price">49.000 TND</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<div id="cartDrawer" class="drawer" aria-hidden="true">
-  <div class="drawer-panel">
-    <div class="drawer-head"><h2 data-i18n="cart">Votre panier</h2><button id="closeCart">✕</button></div>
-    <div id="cartItems"></div>
-    <div class="cart-total"><span data-i18n="total">Total</span><b id="cartTotal">0 DT</b></div>
-    <button id="orderBtn" class="btn primary full" data-i18n="order">Commander sur WhatsApp</button>
-    <p class="mini" data-i18n="codNote">Paiement à la livraison. Les frais de livraison peuvent varier selon la zone.</p>
-  </div>
-</div>
+    <footer>
+        &copy; 2026 Tunisia Mall. Tous droits réservés.
+    </footer>
 
-<script src="products.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
