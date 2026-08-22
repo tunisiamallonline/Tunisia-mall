@@ -1,58 +1,18 @@
-const WHATSAPP_NUMBER="21696416123"; // Remplacez par votre numéro WhatsApp tunisien.
-
+const WHATSAPP_NUMBER="21696416123";
 const translations={
-fr:{home:"Accueil",categories:"Catégories",products:"Produits",about:"À propos",contact:"Contact",eyebrow:"BIENVENUE CHEZ TUNISIA MALL",heroTitle:'Votre shopping tunisien, <span>simple et rapide.</span>',heroText:"Découvrez nos produits, commandez en quelques clics et payez à la livraison.",shopNow:"Découvrir les produits",explore:"Explorer les catégories",cod:"Paiement à la livraison",support:"Support WhatsApp",tunisia:"Livraison en Tunisie",heroCard:"Une expérience moderne pensée pour les clients tunisiens.",discover:"DÉCOUVRIR",catTitle:"Nos catégories",electronics:"Électronique",electronicSub:"Smartphones, accessoires…",games:"Jeux & loisirs",gamesSub:"Pour petits et grands",homeCat:"Maison",homeSub:"Pratique et utile",fashion:"Mode",fashionSub:"Style au quotidien",selection:"SÉLECTION",featured:"Produits populaires",all:"Toutes les catégories",why:"POURQUOI NOUS",aboutTitle:"Une boutique pensée pour la Tunisie.",easy:"Commande facile",easyText:"Ajoutez vos articles au panier et envoyez votre commande.",safe:"Paiement simple",safeText:"Paiement à la livraison, sans procédure compliquée.",help:"Assistance",helpText:"Contact rapide pour vos questions et commandes.",contactEyebrow:"BESOIN D'AIDE ?",contactTitle:"Nous sommes à votre écoute.",contactText:"Pour commander ou demander une information, contactez-nous sur WhatsApp.",footer:"Boutique en ligne tunisienne",cart:"Votre panier",total:"Total",order:"Commander sur WhatsApp",codNote:"Paiement à la livraison. Les frais de livraison peuvent varier selon la zone."},
-ar:{home:"الرئيسية",categories:"الأقسام",products:"المنتجات",about:"من نحن",contact:"اتصل بنا",eyebrow:"مرحبا بكم في TUNISIA MALL",heroTitle:'تسوّق في تونس، <span>بسهولة وسرعة.</span>',heroText:"اكتشف منتجاتنا، اطلب في بضع نقرات وادفع عند الاستلام.",shopNow:"اكتشف المنتجات",explore:"استكشف الأقسام",cod:"الدفع عند الاستلام",support:"دعم عبر واتساب",tunisia:"التوصيل في تونس",heroCard:"تجربة عصرية مصممة للزبون التونسي.",discover:"اكتشف",catTitle:"أقسامنا",electronics:"الإلكترونيات",electronicSub:"هواتف، إكسسوارات وغيرها",games:"الألعاب والترفيه",gamesSub:"للصغار والكبار",homeCat:"المنزل",homeSub:"منتجات عملية ومفيدة",fashion:"الموضة",fashionSub:"أناقة يومية",selection:"اختياراتنا",featured:"منتجات مميزة",all:"كل الأقسام",why:"لماذا نحن",aboutTitle:"متجر مصمم للزبون التونسي.",easy:"طلب سهل",easyText:"أضف المنتجات إلى السلة وأرسل طلبك.",safe:"دفع بسيط",safeText:"الدفع عند الاستلام دون إجراءات معقدة.",help:"المساعدة",helpText:"تواصل سريع لطلباتك واستفساراتك.",contactEyebrow:"هل تحتاج للمساعدة؟",contactTitle:"نحن هنا لمساعدتك.",contactText:"للطلب أو الاستفسار، تواصل معنا عبر واتساب.",footer:"متجر إلكتروني تونسي",cart:"سلة المشتريات",total:"المجموع",order:"اطلب عبر واتساب",codNote:"الدفع عند الاستلام. قد تختلف مصاريف التوصيل حسب المنطقة."}
+fr:{home:"Accueil",categories:"Catégories",products:"Produits",about:"À propos",contact:"Contact",eyebrow:"BIENVENUE CHEZ TUNISIA MALL",heroTitle:'Votre shopping tunisien, <span>simple, rapide et moderne.</span>',heroText:"Découvrez nos produits, ajoutez-les au panier et envoyez votre commande en quelques clics.",shopNow:"Découvrir les produits",explore:"Explorer les catégories",cod:"Paiement à la livraison",support:"Commande WhatsApp",tunisia:"Livraison en Tunisie",heroBadge:"Votre boutique en ligne tunisienne",discover:"DÉCOUVRIR",catTitle:"Nos catégories",catNote:"Trouvez rapidement ce qui vous intéresse.",electronics:"Électronique",electronicSub:"Accessoires & appareils",games:"Jeux & loisirs",gamesSub:"Pour petits et grands",homeCat:"Maison",homeSub:"Pratique et utile",fashion:"Mode",fashionSub:"Style au quotidien",selection:"SÉLECTION",featured:"Nos produits",all:"Toutes les catégories",why:"POURQUOI NOUS",aboutTitle:"Une boutique pensée pour la Tunisie.",aboutLead:"Une expérience simple : choisir, commander et payer à la livraison.",easy:"Commande facile",easyText:"Ajoutez vos articles au panier puis envoyez la commande.",safe:"Paiement à la livraison",safeText:"Pas besoin de paiement en ligne pour commander.",help:"Assistance rapide",helpText:"Une question ? Contactez-nous directement sur WhatsApp.",contactEyebrow:"BESOIN D'AIDE ?",contactTitle:"Nous sommes à votre écoute.",contactText:"Pour commander ou demander une information, contactez-nous sur WhatsApp.",footer:"Boutique en ligne tunisienne",cart:"Votre panier",total:"Total",order:"Commander sur WhatsApp",codNote:"Paiement à la livraison. Les frais de livraison peuvent varier selon la zone."},
+ar:{home:"الرئيسية",categories:"الأقسام",products:"المنتجات",about:"من نحن",contact:"اتصل بنا",eyebrow:"مرحبا بكم في TUNISIA MALL",heroTitle:'تسوّق في تونس، <span>بسهولة وسرعة وعصرية.</span>',heroText:"اكتشف منتجاتنا وأضفها إلى السلة وأرسل طلبك في بضع نقرات.",shopNow:"اكتشف المنتجات",explore:"استكشف الأقسام",cod:"الدفع عند الاستلام",support:"الطلب عبر واتساب",tunisia:"التوصيل في تونس",heroBadge:"متجرك الإلكتروني التونسي",discover:"اكتشف",catTitle:"أقسامنا",catNote:"اعثر بسرعة على ما تبحث عنه.",electronics:"الإلكترونيات",electronicSub:"إكسسوارات وأجهزة",games:"الألعاب والترفيه",gamesSub:"للصغار والكبار",homeCat:"المنزل",homeSub:"منتجات عملية ومفيدة",fashion:"الموضة",fashionSub:"أناقة يومية",selection:"اختياراتنا",featured:"منتجاتنا",all:"كل الأقسام",why:"لماذا نحن",aboutTitle:"متجر مصمم للزبون التونسي.",aboutLead:"تجربة بسيطة: اختر، اطلب، وادفع عند الاستلام.",easy:"طلب سهل",easyText:"أضف المنتجات إلى السلة ثم أرسل الطلب.",safe:"الدفع عند الاستلام",safeText:"لا تحتاج إلى الدفع الإلكتروني لإتمام الطلب.",help:"مساعدة سريعة",helpText:"لديك سؤال؟ تواصل معنا مباشرة عبر واتساب.",contactEyebrow:"هل تحتاج للمساعدة؟",contactTitle:"نحن هنا لمساعدتك.",contactText:"للطلب أو الاستفسار، تواصل معنا عبر واتساب.",footer:"متجر إلكتروني تونسي",cart:"سلة المشتريات",total:"المجموع",order:"اطلب عبر واتساب",codNote:"الدفع عند الاستلام. قد تختلف مصاريف التوصيل حسب المنطقة."}
 };
-
 let lang=localStorage.getItem("tm_lang")||"fr";
 let cart=JSON.parse(localStorage.getItem("tm_cart")||"[]");
-
-const $=s=>document.querySelector(s);
-const money=n=>`${n.toFixed(0)} DT`;
-
-function renderProducts(){
-  const q=$("#search").value.trim().toLowerCase(), cat=$("#categoryFilter").value;
-  const list=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&p.name.toLowerCase().includes(q));
-  $("#productGrid").innerHTML=list.map(p=>`<article class="product">
-    <div class="product-img"><img loading="lazy" src="${p.image}" alt="${p.name}"></div>
-    <div class="product-body"><div class="product-cat">${p.category}</div><h3>${p.name}</h3>
-    <div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart(${p.id})">+ ${lang==="ar"?"إضافة":"Ajouter"}</button></div></div>
-  </article>`).join("")||'<div class="empty">Aucun produit trouvé.</div>';
-}
-function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});saveCart();openCart();}
-function saveCart(){localStorage.setItem("tm_cart",JSON.stringify(cart));renderCart();}
-function renderCart(){
-  const box=$("#cartItems");
-  $("#cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);
-  if(!cart.length){box.innerHTML=`<div class="empty">${lang==="ar"?"السلة فارغة":"Votre panier est vide."}</div>`;$("#cartTotal").textContent="0 DT";return}
-  let total=0;
-  box.innerHTML=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);total+=p.price*i.qty;return `<div class="cart-line"><div><b>${p.name}</b><small>${money(p.price)} × ${i.qty}</small></div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div>`}).join("");
-  $("#cartTotal").textContent=money(total);
-}
-function changeQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart();}
-function openCart(){$("#cartDrawer").classList.add("open");$("#cartDrawer").setAttribute("aria-hidden","false")}
-function closeCart(){$("#cartDrawer").classList.remove("open");$("#cartDrawer").setAttribute("aria-hidden","true")}
-function applyLang(){
-  document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=translations[lang][el.dataset.i18n];if(v!==undefined)el.innerHTML=v});
-  $("#langBtn").textContent=lang==="ar"?"FR":"ع";
-  renderProducts();renderCart();
-}
-function orderWhatsApp(){
-  if(!cart.length)return alert(lang==="ar"?"أضف منتجاً إلى السلة أولاً.":"Ajoutez d'abord un produit.");
-  let msg=lang==="ar"?"مرحبا، أريد طلب:\n":"Bonjour, je souhaite commander:\n";
-  let total=0;cart.forEach(i=>{const p=PRODUCTS.find(x=>x.id===i.id);total+=p.price*i.qty;msg+=`- ${p.name} × ${i.qty} = ${money(p.price)}\n`});
-  msg+=`\n${lang==="ar"?"المجموع":"Total"}: ${money(total)}\n${lang==="ar"?"الدفع: عند الاستلام":"Paiement: à la livraison"}`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank");
-}
-$("#search").addEventListener("input",renderProducts);$("#categoryFilter").addEventListener("change",renderProducts);
-$("#cartBtn").onclick=openCart;$("#closeCart").onclick=closeCart;$("#orderBtn").onclick=orderWhatsApp;
-$("#cartDrawer").addEventListener("click",e=>{if(e.target.id==="cartDrawer")closeCart()});
-$("#langBtn").onclick=()=>{lang=lang==="fr"?"ar":"fr";localStorage.setItem("tm_lang",lang);applyLang()};
-$("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("tm_dark",document.body.classList.contains("dark")?"1":"0")};
-document.querySelectorAll(".category-card").forEach(b=>b.onclick=()=>{$("#categoryFilter").value=b.dataset.category;renderProducts();$("#products").scrollIntoView({behavior:"smooth"})});
-$("#whatsappLink").href=`https://wa.me/${WHATSAPP_NUMBER}`;
-if(localStorage.getItem("tm_dark")==="1")document.body.classList.add("dark");
-$("#year").textContent=new Date().getFullYear();
-applyLang();
+const $=s=>document.querySelector(s);const money=n=>`${Number(n).toFixed(0)} DT`;
+function renderProducts(){const q=$("#search").value.trim().toLowerCase(),cat=$("#categoryFilter").value;const list=PRODUCTS.filter(p=>(cat==="all"||p.category===cat)&&p.name.toLowerCase().includes(q));$("#resultCount").textContent=lang==="ar"?`${list.length} منتج`: `${list.length} produit${list.length>1?'s':''}`;$("#productGrid").innerHTML=list.map(p=>`<article class="product"><div class="product-img"><img loading="lazy" src="${p.image}" alt="${p.name}"></div><div class="product-body"><div class="product-cat">${p.category}</div><h3>${p.name}</h3><div class="product-bottom"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart(${p.id})">+ ${lang==="ar"?"إضافة":"Ajouter"}</button></div></div></article>`).join("")||`<div class="empty">${lang==="ar"?"لم يتم العثور على منتجات.":"Aucun produit trouvé."}</div>`}
+function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);if(!p)return;const item=cart.find(x=>x.id===id);item?item.qty++:cart.push({id,qty:1});saveCart();openCart();toast(lang==="ar"?"تمت إضافة المنتج إلى السلة":"Produit ajouté au panier")}
+function saveCart(){localStorage.setItem("tm_cart",JSON.stringify(cart));renderCart()}
+function renderCart(){const box=$("#cartItems");$("#cartCount").textContent=cart.reduce((a,x)=>a+x.qty,0);if(!cart.length){box.innerHTML=`<div class="empty">${lang==="ar"?"السلة فارغة":"Votre panier est vide."}</div>`;$("#cartTotal").textContent="0 DT";return}let total=0;box.innerHTML=cart.map(i=>{const p=PRODUCTS.find(x=>x.id===i.id);if(!p)return"";total+=p.price*i.qty;return `<div class="cart-line"><div><b>${p.name}</b><small>${money(p.price)} × ${i.qty}</small></div><div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><span>${i.qty}</span><button onclick="changeQty(${p.id},1)">+</button></div></div>`}).join("");$("#cartTotal").textContent=money(total)}
+function changeQty(id,d){const i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);saveCart()}
+function openCart(){$("#cartDrawer").classList.add("open");$("#cartDrawer").setAttribute("aria-hidden","false")};function closeCart(){$("#cartDrawer").classList.remove("open");$("#cartDrawer").setAttribute("aria-hidden","true")}
+function applyLang(){document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i18n]").forEach(el=>{const v=translations[lang][el.dataset.i18n];if(v!==undefined)el.innerHTML=v});$("#langBtn").textContent=lang==="ar"?"FR":"ع";$("#search").placeholder=lang==="ar"?"ابحث عن منتج…":"Rechercher un produit…";renderProducts();renderCart()}
+function orderWhatsApp(){if(!cart.length){alert(lang==="ar"?"أضف منتجاً إلى السلة أولاً.":"Ajoutez d'abord un produit.");return}let msg=lang==="ar"?"مرحبا، أريد طلب:\n":"Bonjour, je souhaite commander:\n";let total=0;cart.forEach(i=>{const p=PRODUCTS.find(x=>x.id===i.id);if(!p)return;total+=p.price*i.qty;msg+=`- ${p.name} × ${i.qty} = ${money(p.price)}\n`});msg+=`\n${lang==="ar"?"المجموع":"Total"}: ${money(total)}\n${lang==="ar"?"الدفع: عند الاستلام":"Paiement: à la livraison"}`;window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank")}
+function toast(text){const el=$("#toast");el.textContent=text;el.classList.add("show");clearTimeout(window.tmToast);window.tmToast=setTimeout(()=>el.classList.remove("show"),1800)}
+$("#search").addEventListener("input",renderProducts);$("#categoryFilter").addEventListener("change",renderProducts);$("#cartBtn").onclick=openCart;$("#closeCart").onclick=closeCart;$("#orderBtn").onclick=orderWhatsApp;$("#cartDrawer").addEventListener("click",e=>{if(e.target.id==="cartDrawer")closeCart()});$("#langBtn").onclick=()=>{lang=lang==="fr"?"ar":"fr";localStorage.setItem("tm_lang",lang);applyLang()};$("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("tm_dark",document.body.classList.contains("dark")?"1":"0")};document.querySelectorAll(".category-card").forEach(b=>b.onclick=()=>{$("#categoryFilter").value=b.dataset.category;renderProducts();$("#products").scrollIntoView({behavior:"smooth"})});$("#whatsappLink").href=`https://wa.me/${WHATSAPP_NUMBER}`;if(localStorage.getItem("tm_dark")==="1")document.body.classList.add("dark");$("#year").textContent=new Date().getFullYear();applyLang();

@@ -1,7 +1,7 @@
 /*
-  تعديل المنتجات مستقبلاً:
-  غيّر الاسم والسعر والصورة والفئة هنا.
-  السعر بالدينار التونسي.
+  Tunisia Mall — produits
+  Pour ajouter/modifier un produit : changez simplement name, category, price et image.
+  Le prix est en dinar tunisien (DT).
 */
 const PRODUCTS = [
   {id:1,name:"Écouteurs Bluetooth Pro",category:"Électronique",price:89,image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80"},
