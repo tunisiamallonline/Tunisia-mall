@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tunisia Mall - Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{margin:0;background:#07111f;color:#fff;font-family:Arial,sans-serif}
+.wrap{max-width:520px;margin:50px auto;padding:20px}
+.card{background:#0d1b2a;border:1px solid #1d3557;border-radius:16px;padding:22px;box-shadow:0 10px 30px #0005}
+h1{margin-top:0}
+input,button{width:100%;box-sizing:border-box;padding:13px;margin:7px 0;border-radius:10px;font-size:16px}
+input{background:#081522;color:#fff;border:1px solid #29435f}
+button{border:0;background:#1677ff;color:#fff;font-weight:bold;cursor:pointer}
+#msg{margin-top:12px;line-height:1.7}
+.hidden{display:none}
+.order{background:#091522;border:1px solid #20364d;border-radius:12px;padding:12px;margin:10px 0}
+.small{opacity:.75;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card" id="loginCard">
+<h1>🔐 Tunisia Mall Admin</h1>
+<p>تسجيل الدخول إلى لوحة التحكم</p>
+<input id="email" type="email" placeholder="البريد الإلكتروني" autocomplete="username">
+<input id="password" type="password" placeholder="كلمة السر" autocomplete="current-password">
+<button id="login">دخول</button>
+<div id="msg"></div>
+</div>
+
+<div class="card hidden" id="adminCard">
+<h1>📦 الطلبات</h1>
+<button id="refresh">تحديث الطلبات</button>
+<button id="logout">تسجيل الخروج</button>
+<div id="orders"></div>
+<div id="adminMsg"></div>
+</div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://sxajasczcwurclchyluf.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "REPLACE_WITH_YOUR_PUBLISHABLE_KEY";
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const $ = id => document.getElementById(id);
+function msg(t){ $("msg").textContent=t; }
+function adminMsg(t){ $("adminMsg").textContent=t; }
+
+$("login").onclick = async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+  if(!email || !password){ msg("أدخل البريد الإلكتروني وكلمة السر."); return; }
+
+  msg("جاري تسجيل الدخول...");
+  const {error} = await sb.auth.signInWithPassword({email, password});
+  if(error){ msg("تعذر تسجيل الدخول: " + error.message); return; }
+
+  $("loginCard").classList.add("hidden");
+  $("adminCard").classList.remove("hidden");
+  loadOrders();
+};
+
+$("logout").onclick = async () => {
+  await sb.auth.signOut();
+  location.reload();
+};
+
+$("refresh").onclick = loadOrders;
+
+async function loadOrders(){
+  adminMsg("جاري تحميل الطلبات...");
+  $("orders").innerHTML="";
+  const {data,error} = await sb.from("orders").select("*").order("created_at",{ascending:false});
+  if(error){
+    adminMsg("تعذر تحميل الطلبات. تأكد من وجود جدول orders وسياسة القراءة للمستخدم المسجل.");
+    return;
+  }
+  adminMsg("");
+  if(!data || !data.length){
+    $("orders").innerHTML="<p>لا توجد طلبات حاليا.</p>";
+    return;
+  }
+  data.forEach(o=>{
+    const div=document.createElement("div");
+    div.className="order";
+    div.innerHTML="<b>طلب #"+(o.id ?? "")+"</b><br>"+
+      "<span class='small'>"+(o.created_at ?? "")+"</span><br>"+
+      "<pre style='white-space:pre-wrap;direction:ltr;text-align:left'>"+
+      escapeHtml(JSON.stringify(o,null,2))+"</pre>";
+    $("orders").appendChild(div);
+  });
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+(async()=>{
+  const {data} = await sb.auth.getSession();
+  if(data.session){
+    $("loginCard").classList.add("hidden");
+    $("adminCard").classList.remove("hidden");
+    loadOrders();
+  }
+})();
+</script>
+</body>
+</html>
