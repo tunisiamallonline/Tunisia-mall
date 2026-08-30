@@ -2,113 +2,175 @@
 <html lang="fr" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Tunisia Mall — boutique en ligne tunisienne. Commande simple et paiement à la livraison.">
-  <title>Tunisia Mall | Boutique en ligne</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071b3a">
+  <meta name="description" content="Tunisia Mall — boutique en ligne tunisienne. Découvrez nos produits et commandez simplement.">
+  <title>Tunisia Mall | Shopping en Tunisie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#"><span class="brand-mark">TM</span><span>Tunisia <b>Mall</b></span></a>
-    <nav class="nav-links">
-      <a href="#home" data-i18n="home">Accueil</a>
-      <a href="#categories" data-i18n="categories">Catégories</a>
-      <a href="#products" data-i18n="products">Produits</a>
-      <a href="#about" data-i18n="about">À propos</a>
-      <a href="#contact" data-i18n="contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button id="langBtn" class="icon-btn" aria-label="Changer la langue">ع</button>
-      <button id="themeBtn" class="icon-btn" aria-label="Mode sombre">☾</button>
-      <button id="cartBtn" class="cart-btn">🛒 <span id="cartCount">0</span></button>
+  <div class="top-strip">
+    <div class="container top-strip-inner">
+      <span>🇹🇳 <span data-i18n="topWelcome">Livraison partout en Tunisie</span></span>
+      <span class="top-highlight" data-i18n="topCod">Paiement à la livraison</span>
+      <span data-i18n="topSupport">Support WhatsApp</span>
     </div>
   </div>
-</header>
 
-<main>
-<section id="home" class="hero">
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow" data-i18n="eyebrow">BIENVENUE CHEZ TUNISIA MALL</span>
-      <h1 data-i18n="heroTitle">Votre shopping tunisien, <span>simple et rapide.</span></h1>
-      <p data-i18n="heroText">Découvrez nos produits, commandez en quelques clics et payez à la livraison.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#products" data-i18n="shopNow">Découvrir les produits</a>
-        <a class="btn secondary" href="#categories" data-i18n="explore">Explorer les catégories</a>
-      </div>
-      <div class="trust-row">
-        <span>✓ <b data-i18n="cod">Paiement à la livraison</b></span>
-        <span>✓ <b data-i18n="support">Support WhatsApp</b></span>
-        <span>✓ <b data-i18n="tunisia">Livraison en Tunisie</b></span>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Tunisia Mall">
+        <span class="brand-mark">TM</span>
+        <span class="brand-copy"><strong>Tunisia</strong> <b>Mall</b><small data-i18n="brandSub">Votre shopping en ligne</small></span>
+      </a>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="#home" data-i18n="home">Accueil</a>
+        <a href="#categories" data-i18n="categories">Catégories</a>
+        <a href="#products" data-i18n="products">Produits</a>
+        <a href="#about" data-i18n="about">Pourquoi nous</a>
+        <a href="#contact" data-i18n="contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="langBtn" class="icon-btn" aria-label="Changer la langue">ع</button>
+        <button id="themeBtn" class="icon-btn" aria-label="Mode sombre">☾</button>
+        <button id="cartBtn" class="cart-btn" aria-label="Ouvrir le panier">
+          <span class="cart-icon">🛒</span><span class="cart-label" data-i18n="cartShort">Panier</span><span id="cartCount" class="cart-count">0</span>
+        </button>
+        <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
       </div>
     </div>
-    <div class="hero-card">
-      <div class="hero-glow"></div>
-      <div class="hero-badge">TN</div>
-      <h3>Tunisia Mall</h3>
-      <p data-i18n="heroCard">Une expérience moderne pensée pour les clients tunisiens.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<section id="categories" class="section">
-  <div class="container">
-    <div class="section-head"><div><span class="eyebrow" data-i18n="discover">DÉCOUVRIR</span><h2 data-i18n="catTitle">Nos catégories</h2></div></div>
-    <div class="category-grid">
-      <button class="category-card" data-category="Électronique"><span>💻</span><b data-i18n="electronics">Électronique</b><small data-i18n="electronicSub">Smartphones, accessoires…</small></button>
-      <button class="category-card" data-category="Jeux"><span>🎮</span><b data-i18n="games">Jeux & loisirs</b><small data-i18n="gamesSub">Pour petits et grands</small></button>
-      <button class="category-card" data-category="Maison"><span>🏠</span><b data-i18n="homeCat">Maison</b><small data-i18n="homeSub">Pratique et utile</small></button>
-      <button class="category-card" data-category="Mode"><span>👟</span><b data-i18n="fashion">Mode</b><small data-i18n="fashionSub">Style au quotidien</small></button>
-    </div>
-  </div>
-</section>
-
-<section id="products" class="section products-section">
-  <div class="container">
-    <div class="section-head">
-      <div><span class="eyebrow" data-i18n="selection">SÉLECTION</span><h2 data-i18n="featured">Produits populaires</h2></div>
-      <div class="filters">
-        <input id="search" type="search" placeholder="Rechercher…" aria-label="Rechercher">
-        <select id="categoryFilter"><option value="all" data-i18n="all">Toutes les catégories</option><option>Électronique</option><option>Jeux</option><option>Maison</option><option>Mode</option></select>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow" data-i18n="eyebrow">TUNISIA MALL • SHOPPING LOCAL</span>
+          <h1 data-i18n="heroTitle">Tout ce qu'il vous faut,<br><span>au même endroit.</span></h1>
+          <p data-i18n="heroText">Découvrez une sélection de produits, commandez en quelques clics et profitez d'une expérience simple pensée pour la Tunisie.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#products" data-i18n="shopNow">Découvrir les produits</a>
+            <a class="btn glass" href="#categories" data-i18n="explore">Explorer les catégories</a>
+          </div>
+          <div class="trust-row">
+            <span><i>✓</i><b data-i18n="cod">Paiement à la livraison</b></span>
+            <span><i>✓</i><b data-i18n="support">Commande WhatsApp</b></span>
+            <span><i>✓</i><b data-i18n="tunisia">Livraison en Tunisie</b></span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-showcase">
+            <div class="showcase-glow"></div>
+            <div class="showcase-logo">TM</div>
+            <span class="showcase-pill" data-i18n="showcasePill">100% tunisien</span>
+            <h2>Tunisia <span>Mall</span></h2>
+            <p data-i18n="heroCard">Une expérience moderne, rapide et claire pour vos achats.</p>
+            <div class="showcase-stats">
+              <div><strong>24/7</strong><small data-i18n="statSupport">Commande en ligne</small></div>
+              <div><strong>🇹🇳</strong><small data-i18n="statTunisia">En Tunisie</small></div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <section id="categories" class="section categories-section">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow dark-eyebrow" data-i18n="discover">DÉCOUVRIR</span><h2 data-i18n="catTitle">Achetez par catégorie</h2><p data-i18n="catText">Trouvez rapidement ce qui vous intéresse.</p></div>
+          <a href="#products" class="text-link" data-i18n="seeAll">Voir tous les produits →</a>
+        </div>
+        <div class="category-grid">
+          <button class="category-card category-blue" data-category="Électronique">
+            <span class="category-icon">💻</span><div><b data-i18n="electronics">Électronique</b><small data-i18n="electronicSub">Smartphones, accessoires…</small></div><strong>→</strong>
+          </button>
+          <button class="category-card category-purple" data-category="Jeux">
+            <span class="category-icon">🎮</span><div><b data-i18n="games">Jeux & loisirs</b><small data-i18n="gamesSub">Pour petits et grands</small></div><strong>→</strong>
+          </button>
+          <button class="category-card category-green" data-category="Maison">
+            <span class="category-icon">🏠</span><div><b data-i18n="homeCat">Maison</b><small data-i18n="homeSub">Pratique et utile</small></div><strong>→</strong>
+          </button>
+          <button class="category-card category-gold" data-category="Mode">
+            <span class="category-icon">👟</span><div><b data-i18n="fashion">Mode</b><small data-i18n="fashionSub">Style au quotidien</small></div><strong>→</strong>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section products-section">
+      <div class="container">
+        <div class="section-head product-head">
+          <div><span class="eyebrow dark-eyebrow" data-i18n="selection">SÉLECTION</span><h2 data-i18n="featured">Nos produits</h2><p data-i18n="productText">Une sélection mise à jour depuis notre boutique.</p></div>
+        </div>
+        <div class="shop-toolbar">
+          <div class="search-box">
+            <span>⌕</span><input id="search" type="search" placeholder="Rechercher un produit…" data-i18n-placeholder="searchPlaceholder" aria-label="Rechercher">
+          </div>
+          <select id="categoryFilter" aria-label="Catégorie">
+            <option value="all" data-i18n="all">Toutes les catégories</option>
+            <option>Électronique</option><option>Jeux</option><option>Maison</option><option>Mode</option>
+          </select>
+        </div>
+        <div id="productGrid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container about-layout">
+        <div class="about-intro">
+          <span class="eyebrow dark-eyebrow" data-i18n="why">POURQUOI NOUS</span>
+          <h2 data-i18n="aboutTitle">Une boutique pensée pour le client tunisien.</h2>
+          <p data-i18n="aboutText">Nous privilégions une expérience claire : choisir, ajouter au panier et commander facilement.</p>
+          <a href="#contact" class="btn dark-btn" data-i18n="contactUs">Nous contacter</a>
+        </div>
+        <div class="about-cards">
+          <div class="about-card"><span>01</span><div><h3 data-i18n="easy">Commande facile</h3><p data-i18n="easyText">Ajoutez vos articles au panier et envoyez votre commande.</p></div></div>
+          <div class="about-card"><span>02</span><div><h3 data-i18n="safe">Paiement simple</h3><p data-i18n="safeText">Paiement à la livraison, sans procédure compliquée.</p></div></div>
+          <div class="about-card"><span>03</span><div><h3 data-i18n="help">Assistance rapide</h3><p data-i18n="helpText">Contactez-nous directement pour vos questions.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container contact-box">
+        <div><span class="eyebrow">WHATSAPP • TUNISIA MALL</span><h2 data-i18n="contactTitle">Besoin d'aide pour commander ?</h2><p data-i18n="contactText">Notre équipe est disponible pour vous aider et répondre à vos questions.</p></div>
+        <a class="btn whatsapp" id="whatsappLink" href="#" target="_blank" rel="noopener">💬 <span data-i18n="whatsapp">Contacter sur WhatsApp</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="footer-brand" href="#home"><span class="brand-mark">TM</span><span><strong>Tunisia</strong> <b>Mall</b></span></a><p data-i18n="footerDesc">Boutique en ligne tunisienne.</p></div>
+      <div><h3 data-i18n="footerShop">Boutique</h3><a href="#products" data-i18n="products">Produits</a><a href="#categories" data-i18n="categories">Catégories</a></div>
+      <div><h3 data-i18n="footerHelp">Aide</h3><a href="#about" data-i18n="about">Pourquoi nous</a><a href="#contact" data-i18n="contact">Contact</a></div>
+      <div><h3 data-i18n="footerOrder">Commander</h3><a id="footerWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp</a><span data-i18n="codFooter">Paiement à la livraison</span></div>
     </div>
-    <div id="productGrid" class="product-grid"></div>
-  </div>
-</section>
+    <div class="container footer-bottom"><span>© <span id="year"></span> Tunisia Mall</span><span data-i18n="rights">Tous droits réservés.</span></div>
+  </footer>
 
-<section id="about" class="section about">
-  <div class="container about-grid">
-    <div><span class="eyebrow" data-i18n="why">POURQUOI NOUS</span><h2 data-i18n="aboutTitle">Une boutique pensée pour la Tunisie.</h2></div>
-    <div class="about-points">
-      <div><b>01</b><h3 data-i18n="easy">Commande facile</h3><p data-i18n="easyText">Ajoutez vos articles au panier et envoyez votre commande.</p></div>
-      <div><b>02</b><h3 data-i18n="safe">Paiement simple</h3><p data-i18n="safeText">Paiement à la livraison, sans procédure compliquée.</p></div>
-      <div><b>03</b><h3 data-i18n="help">Assistance</h3><p data-i18n="helpText">Contact rapide pour vos questions et commandes.</p></div>
+  <div id="cartDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <div class="drawer-head"><div><span class="drawer-kicker">TUNISIA MALL</span><h2 data-i18n="cart">Votre panier</h2></div><button id="closeCart" class="close-btn" aria-label="Fermer">×</button></div>
+      <div id="cartItems"></div>
+      <div class="cart-total"><span data-i18n="total">Total</span><b id="cartTotal">0 DT</b></div>
+      <button id="orderBtn" class="btn primary full" data-i18n="order">Commander sur WhatsApp</button>
+      <p class="mini" data-i18n="codNote">Paiement à la livraison. Les frais de livraison peuvent varier selon la zone.</p>
     </div>
   </div>
-</section>
 
-<section id="contact" class="section contact">
-  <div class="container contact-box">
-    <div><span class="eyebrow" data-i18n="contactEyebrow">BESOIN D'AIDE ?</span><h2 data-i18n="contactTitle">Nous sommes à votre écoute.</h2><p data-i18n="contactText">Pour commander ou demander une information, contactez-nous sur WhatsApp.</p></div>
-    <a class="btn whatsapp" id="whatsappLink" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
-  </div>
-</section>
-</main>
-
-<footer><div class="container footer"><span>© <span id="year"></span> Tunisia Mall</span><span data-i18n="footer">Boutique en ligne tunisienne</span></div></footer>
-
-<div id="cartDrawer" class="drawer" aria-hidden="true">
-  <div class="drawer-panel">
-    <div class="drawer-head"><h2 data-i18n="cart">Votre panier</h2><button id="closeCart">✕</button></div>
-    <div id="cartItems"></div>
-    <div class="cart-total"><span data-i18n="total">Total</span><b id="cartTotal">0 DT</b></div>
-    <button id="orderBtn" class="btn primary full" data-i18n="order">Commander sur WhatsApp</button>
-    <p class="mini" data-i18n="codNote">Paiement à la livraison. Les frais de livraison peuvent varier selon la zone.</p>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js"></script>
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script>
+    const menuBtn=document.getElementById("menuBtn"), nav=document.getElementById("mainNav");
+    menuBtn?.addEventListener("click",()=>{nav.classList.toggle("open");menuBtn.textContent=nav.classList.contains("open")?"×":"☰"});
+    nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");if(menuBtn)menuBtn.textContent="☰"}));
+  </script>
 </body>
 </html>
