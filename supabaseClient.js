@@ -1,6 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://sxajasczwurlchyluf.supabase.co'
-const supabaseAnonKey = 'Sb_publishable_FbKKHDuGIz_21743WXFYbg_BVhd6jvk'
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Supabase client — single source of truth for Tunisia Mall.
+const SUPABASE_URL="https://sxajasczcwurclchyluf.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_FbKKHDuGIz_21743WXFYbg_BVhd6jvk";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
