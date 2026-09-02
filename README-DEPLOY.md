@@ -1,23 +1,16 @@
-# Tunisia Mall — Final GitHub Pages Edition
+# Tunisia Mall — Premium Edition
 
 ## رفع النسخة
-ارفع **محتويات هذا المجلد مباشرة إلى جذر مستودع GitHub Pages**. يجب أن يكون `index.html` في جذر المستودع، وليس داخل مجلد فرعي.
-
-### البنية الصحيحة
-- `index.html` — المتجر الرئيسي
-- `style.css` — التصميم
-- `script.js` — وظائف المتجر والطلبات
-- `products.js` — المنتجات الاحتياطية
-- `logo.png` — الشعار
-- `admin.html` — رابط مختصر يحول إلى لوحة الإدارة
-- `admin-final-pro.html` — لوحة الإدارة المعتمدة
-- `admin-final-fixed.html` — نسخة إصلاح إضافية محفوظة
-- `supabase-config.js` / `supabaseClient.js` — إعدادات Supabase
-- `404.html` — صفحة احتياطية تعيد الزائر للمتجر
+ارفع محتويات هذا المجلد إلى جذر مستودع GitHub Pages، ثم افتح الموقع بعد اكتمال النشر.
 
 ## مهم
-لا ترفع المجلد الأب نفسه داخل المستودع. افتح هذا المجلد وانسخ الملفات التي بداخله إلى جذر مستودع `Tunisia-mall`.
+- `index.html` هو المتجر.
+- `admin.html` يحوّل تلقائيًا إلى `admin-final.html`.
+- المنتجات في المتجر تُقرأ من جدول Supabase `products` أولًا.
+- `products.js` موجود كنسخة احتياطية عند تعذر Supabase.
+- الطلبات تُحفظ في `orders` قبل فتح WhatsApp.
+- استبدل `WHATSAPP_NUMBER` في `script.js` برقم WhatsApp الحقيقي.
+- لا تضع `service_role` key في ملفات الواجهة. استخدم publishable/anon key مع RLS مضبوط.
 
-استخدم GitHub Pages من branch `main` ومجلد `/ (root)` إذا كان هذا هو إعداد المستودع الحالي.
-
-لا تضع Service Role Key في ملفات الواجهة. استخدم Publishable/Anon Key مع RLS مضبوط.
+## ما يلزم في Supabase
+يجب أن يسمح جدول `products` بالقراءة العامة للمنتجات المنشورة، ويجب أن تسمح سياسة `orders` بإدخال الطلبات من المتجر. لوحة الإدارة يجب أن تستخدم صلاحيات أكثر تقييدًا.
